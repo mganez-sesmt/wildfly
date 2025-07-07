@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.9" name="br.gov.mec.aghu.security">
+   <resources>
+		<resource-root path="aghu-security-26.1.0-Final-v4.jar"/>
+		<resource-root path="java-jwt-4.4.0.jar"/>
+		<resource-root path="jwks-rsa-0.22.0.jar"/>
+		<resource-root path="jackson-databind-2.14.2.jar"/>
+		<resource-root path="jackson-annotations-2.14.2.jar"/>	
+		<resource-root path="jackson-core-2.14.2.jar"/>	
+   </resources>
+   <dependencies>
+	<module name="org.wildfly.security.elytron"/>   
+	<module name="org.jboss.logging"/>
+	<module name="java.logging"/>
+    <module name="java.naming"/>
+    <module name="java.sql"/>
+	<module name="org.apache.commons.codec"/>
+	<module name="br.gov.mec.aghu.configuration" />
+   </dependencies>
+</module>
