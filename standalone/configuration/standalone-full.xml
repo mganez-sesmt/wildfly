@@ -307,6 +307,7 @@
             </logger>
             <logger category="br.gov.mec.aghu.tools.DebugFilter">
                 <level name="DEBUG"/>
+            </logger>
             <logger category="br.gov.mec.aghu.faturamento.business.ContaHospitalarON">
                 <level name="INFO"/>
             </logger>
