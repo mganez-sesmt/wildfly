@@ -235,16 +235,16 @@
         <subsystem xmlns="urn:jboss:domain:datasources:7.0">
             <datasources>
                 <datasource jndi-name="java:/aghuDatasource" pool-name="aghu" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:postgresql://10.15.1.21:5432/agh</connection-url>
+                    <connection-url>${env.DATASOURCE_URL}</connection-url>
                     <driver>PostgresqlDriver</driver>
                     <pool>
-                        <min-pool-size>1</min-pool-size>
-                        <max-pool-size>5</max-pool-size>
+                        <min-pool-size>${env.DB_POOLSIZE_MIN:5}</min-pool-size>
+                        <max-pool-size>${env.DB_POOLSIZE_MAX:20}</max-pool-size>
                         <prefill>true</prefill>
                     </pool>
                     <security>
-                        <user-name>aghu_dev</user-name>
-                        <password>dtgjes#768359</password>
+                        <user-name>${env.DB_USER}</user-name>
+                        <password>${env.DB_PWD}</password>
                     </security>
                     <validation>
                         <check-valid-connection-sql>select now()</check-valid-connection-sql>
@@ -260,16 +260,16 @@
                     </statement>
                 </datasource>
                 <datasource jndi-name="java:/aghuFitDatasource" pool-name="aghufit" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:postgresql://10.15.1.21:5432/agh</connection-url>
+                    <connection-url>${env.DATASOURCE_URL}</connection-url>
                     <driver>PostgresqlDriver</driver>
                     <pool>
-                        <min-pool-size>1</min-pool-size>
-                        <max-pool-size>5</max-pool-size>
+                        <min-pool-size>${env.DB_POOLSIZE_MIN:5}</min-pool-size>
+                        <max-pool-size>${env.DB_POOLSIZE_MAX:20}</max-pool-size>
                         <prefill>true</prefill>
                     </pool>
                     <security>
-                        <user-name>aghu_dev</user-name>
-                        <password>dtgjes#768359</password>
+                        <user-name>${env.DB_USER}</user-name>
+                        <password>${env.DB_PWD}</password>
                     </security>
                     <validation>
                         <check-valid-connection-sql>select now()</check-valid-connection-sql>
@@ -367,7 +367,7 @@
                 </thread-pool>
             </thread-pools>
             <iiop enable-by-default="false" use-qualified-name="false"/>
-            <default-security-domain value="AghuseApplicationDomain"/>
+            <default-security-domain value="${env.EJB_SECURITY_DOMAIN:AghuseApplicationDomain}"/>
             <application-security-domains>
                 <application-security-domain name="AghuseApplicationDomain" security-domain="AghuseSecurityDomain"/>
                 <application-security-domain name="PesquisaApplicationDomain" security-domain="PesquisaSecurityDomain"/>
@@ -413,7 +413,7 @@
                 </security-domain>
             </security-domains>
             <security-realms>
-                <custom-realm name="AghuseRealm" module="br.gov.mec.aghu.security" class-name="br.gov.mec.aghu.casca.autenticacao.AghuseApenasNegocialSecurityRealm">
+                <custom-realm name="AghuseRealm" module="br.gov.mec.aghu.security" class-name="${env.SECURITY_REALM_CLASS:br.gov.mec.aghu.casca.autenticacao.AghuseApenasNegocialSecurityRealm}">
                     <configuration>
                         <property name="dsJndiName" value="java:/aghuDatasource"/>
                         <property name="validarAutenticacaoNegocial" value="select usuario.id, usuario.login, usuario.ATIVO , (select count(*) from casca.CSC_PERFIS_USUARIOS perfilusuario inner join casca.CSC_PERFIL perfil on perfil.id = perfilusuario.id_perfil where perfilusuario.id_usuario = usuario.id and (perfilusuario.dthr_expiracao is null or perfilusuario.dthr_expiracao &gt; now()) and perfil.SITUACAO = 'A' ) perfilcount from CASCA.CSC_USUARIO usuario where login = upper(?)"/>
@@ -437,6 +437,7 @@
                 <custom-realm name="jwt-realm" module="br.gov.mec.aghu.security" class-name="br.gov.mec.aghu.casca.autenticacao.CustomTokenSecurityRealm">
                     <configuration>
                         <property name="principalClaimName" value="preferred_username"/>
+                        <property name="xDSG7Wa_FAtSVlMbn0sRdcExIzZW47t1eS8neXH92P8" value="-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApDbgVD2WrzH4Pif+l763tyntH4HR9b2YsfWZfsfkS3GfI9NubRG+6DMgmN6XNqJgaJfNpkYDqU3nDwxvf5Pdx0lqHamCcjzUfJmMevEmV5RC7o+wppIaI2RpaPeS40FD3KixafGSaZDZNSxiJav/HJTu6PI0SmHeh6yVjrjBl3RxEEmtIGcp4ZnPfswEKuAkY6YEE8tNUwjIUdeG0yZopJYhSpWxdXVbkCye+BIBHP9f2FgSMe10x2bRd3zcQCumpbaJ8yJnMV9JxPX40dfLmHiqajqwiCHtgLWA3pD2Aa2YpV9LLPaz+kZBzsl5LJmcI5zapz5IrDxkuirEw+ASCwIDAQAB-----END PUBLIC KEY-----"/>
                         <property name="2ivjG3j2WQWhI66CmHnN02DkUa0Se9Om79bdoDansdU" value="-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmJh7emI2Lwl3GrA2aGgC56usu5bQuQ+0/Xx9IkWlNeTgmkFc38E3VAHTP/hxdJ/3OmX/DKgA2QVZhiMrQkpHD08U2cBiDRwi9QIHCdxkdSptkiz7F+V1nn29d5ug+9irvWEce2J6/7ppZXvqGRiXzU9hJeI6j832R0JKGufcoJMQII055sgwwrXoXN602Qjpln0SwgMWuLVku83msAmvrcAGKw/Cma9+u5RCBCHUqd5KKyXBFSStbFHRdAT09kiAUz/Usa4jDIBUe6KTVc73zTHIRC+AwDzdhpc9rlhurIuEN2oZR/aFMFNzAWJXb71piEPj2LcxKiM6EU0bLcr8nQIDAQAB-----END PUBLIC KEY-----"/>
                         <property name="dsJndiName" value="java:/aghuDatasource"/>
                         <property name="validarAutenticacaoNegocial" value="select usuario.id, usuario.login, usuario.ATIVO , (select count(*) from casca.CSC_PERFIS_USUARIOS perfilusuario inner join casca.CSC_PERFIL perfil on perfil.id = perfilusuario.id_perfil where perfilusuario.id_usuario = usuario.id and (perfilusuario.dthr_expiracao is null or perfilusuario.dthr_expiracao &gt; now()) and perfil.SITUACAO = 'A' ) perfilcount from CASCA.CSC_USUARIO usuario where login = upper(?)"/>
@@ -794,7 +795,7 @@
             </server>
             <servlet-container name="default">
                 <jsp-config/>
-                <session-cookie http-only="true" secure="false"/>
+                <session-cookie http-only="true" secure="${env.SECURE_COOKIES:false}"/>
                 <websockets/>
             </servlet-container>
             <filters>
@@ -825,7 +826,7 @@
             <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
         </interface>
         <interface name="public">
-            <inet-address value="0.0.0.0"/>
+            <inet-address value="${jboss.bind.address:0.0.0.0}"/>
         </interface>
         <interface name="unsecure">
             <inet-address value="${jboss.bind.address.unsecure:127.0.0.1}"/>
