@@ -313,9 +313,6 @@
             <logger category="br.gov.mec.aghu.fit">
                 <level name="INFO"/>
             </logger>
-            <logger category="br.gov.mec.aghu.faturamento.business.ContaHospitalarON">
-                <level name="INFO"/>
-            </logger>
             <logger category="br.gov.mec.aghu.estoque.business.LeituraNotaFiscalEletronicaRN" use-parent-handlers="false">
                 <level name="DEBUG"/>
                 <handlers>
