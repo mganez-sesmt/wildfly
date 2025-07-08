@@ -630,9 +630,11 @@
                     </statement>
                 </datasource>
                 <drivers>
+                <!--
                     <driver name="OracleDriver" module="com.oracle.database.jdbc">
                         <driver-class>oracle.jdbc.OracleDriver</driver-class>
                     </driver>
+                -->
                     <driver name="PostgresqlDriver" module="org.postgresql">
                         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
