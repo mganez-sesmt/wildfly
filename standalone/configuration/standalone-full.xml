@@ -595,7 +595,9 @@
                     <security>
                         <user-name>${env.DB_USER}</user-name>
                         <password>${env.DB_PWD}</password>
+                        <!-- 
                         <credential-reference store="aghuse_store" alias="database-aghu-pw"/>
+                        -->
                     </security>
                     <validation>
                         <check-valid-connection-sql>select now()</check-valid-connection-sql>
@@ -621,7 +623,9 @@
                     <security>
                         <user-name>${env.DB_USER}</user-name>
                         <password>${env.DB_PWD}</password>
+                        <!-- 
                         <credential-reference store="aghuse_store" alias="database-fit-pw"/>
+                        -->
                     </security>
                     <validation>
                         <check-valid-connection-sql>select now()</check-valid-connection-sql>
