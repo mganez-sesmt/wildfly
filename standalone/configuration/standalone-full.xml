@@ -243,7 +243,6 @@
             <logger 
                 category="org.hibernate.SQL" 
                 use-parent-handlers="false"
-                use-parent-handlers="false"
             >
                 <level name="DEBUG"/>
                 <handlers>
