@@ -34,19 +34,22 @@ set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
   -Dsun.rmi.dgc.client.gcInterval=3600000 \
   -Dsun.rmi.dgc.server.gcInterval=3600000 \
   -Daghu.automatic.timers.enable=true \
-  -Dlogging.configuration="file:///wildfly/standalone/configuration/logging.properties" \
-  --add-opens=java.base/java.lang=ALL-UNNAMED \
-  --add-opens=java.base/java.lang.invoke=ALL-UNNAMED \
-  --add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
-  --add-opens=java.base/java.io=ALL-UNNAMED \
-  --add-opens=java.base/java.security=ALL-UNNAMED \
-  --add-opens=java.base/java.util=ALL-UNNAMED \
-  --add-opens=java.base/java.util.concurrent=ALL-UNNAMED \
-  --add-opens=java.management/javax.management=ALL-UNNAMED \
-  --add-opens=java.naming/javax.naming=ALL-UNNAMED \
-  --add-modules=java.se \
-  --add-exports=java.desktop/sun.awt=ALL-UNNAMED \
-  --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED \
-  --add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
-  --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED \
-  --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED 
+  -Dlogging.configuration="/wildfly/standalone/configuration/logging.properties"
+  #-Dlogging.configuration="file:///wildfly/standalone/configuration/logging.properties"
+  
+ #  \
+ # --add-opens=java.base/java.lang=ALL-UNNAMED \
+ # --add-opens=java.base/java.lang.invoke=ALL-UNNAMED \
+ # --add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
+ # --add-opens=java.base/java.io=ALL-UNNAMED \
+ # --add-opens=java.base/java.security=ALL-UNNAMED \
+ # --add-opens=java.base/java.util=ALL-UNNAMED \
+ # --add-opens=java.base/java.util.concurrent=ALL-UNNAMED \
+ # --add-opens=java.management/javax.management=ALL-UNNAMED \
+ # --add-opens=java.naming/javax.naming=ALL-UNNAMED \
+ # --add-modules=java.se \
+ # --add-exports=java.desktop/sun.awt=ALL-UNNAMED \
+ # --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED \
+ # --add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
+ # --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED \
+ # --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED 
