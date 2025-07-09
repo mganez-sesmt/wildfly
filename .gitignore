@@ -1,4 +1,4 @@
-standalone/log/
-standalone/tmp/
-standalone/deployments/
-standalone/data/content/
+standalone/log/*
+standalone/tmp/*
+standalone/deployments/*
+standalone/data/content/*
