@@ -18,17 +18,23 @@ set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
 ./standalone.sh \
   -b 0.0.0.0 \
   --server-config=standalone-full.xml \
-  -Djboss.server.base.dir="standalone" \
   -Dprogram.name="JBossTools: WildFly 24+" \
-  -Dorg.jboss.resolver.warning=true \
+  -Djava.awt.headless=true \
   -Djava.net.preferIPv4Stack=true \
+  -Djboss.server.base.dir="standalone" \
+  -Djboss.mail.server.host=smtp.gmail.com \
+  -Djboss.mail.server.port=587 \
+  -Djboss.bind.address=0.0.0.0 \
+  -Djboss.bind.address.management=localhost \
+  -Djboss.as.management.blocking.timeout=9999999 \
+  -Djboss.modules.system.pkgs=org.jboss.byteman \
+  -Dorg.jboss.resolver.warning=true \
+  -Dorg.jboss.logmanager.nocolor=true \
+  -Dorg.jboss.boot.log.file="standalone/log/boot.log" \
   -Dsun.rmi.dgc.client.gcInterval=3600000 \
   -Dsun.rmi.dgc.server.gcInterval=3600000 \
-  -Djboss.modules.system.pkgs=org.jboss.byteman \
-  -Djava.awt.headless=true \
-  -Dorg.jboss.boot.log.file="standalone/log/boot.log" \
+  -Daghu.automatic.timers.enable=true \
   -Dlogging.configuration="file://../standalone/configuration/logging.properties" \
-  -Dorg.jboss.logmanager.nocolor=true \
   --add-exports=java.desktop/sun.awt=ALL-UNNAMED \
   --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED \
   --add-opens=java.base/java.lang=ALL-UNNAMED \
@@ -43,10 +49,4 @@ set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
   --add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
   --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED \
   --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED \
-  --add-modules=java.se \
-  -Djboss.bind.address.management=localhost \
-  -Djboss.as.management.blocking.timeout=9999999 \
-  -Daghu.automatic.timers.enable=true \
-  -Djboss.mail.server.host=smtp.gmail.com \
-  -Djboss.mail.server.port=587 \
-  -Djboss.bind.address=0.0.0.0
+  --add-modules=java.se 
