@@ -15,7 +15,7 @@
 set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
 
 # Start WildFly with all configurations
-.bin/standalone.sh \
+./bin/standalone.sh \
   --server-config=standalone-full.xml \
   -Dprogram.name="JBossTools: WildFly 24+" \
   -Djava.awt.headless=true \
