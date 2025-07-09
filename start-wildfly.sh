@@ -16,7 +16,6 @@ set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
 
 # Start WildFly with all configurations
 ./standalone.sh \
-  -b 0.0.0.0 \
   --server-config=standalone-full.xml \
   -Dprogram.name="JBossTools: WildFly 24+" \
   -Djava.awt.headless=true \
@@ -24,8 +23,6 @@ set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
   -Djboss.server.base.dir="standalone" \
   -Djboss.mail.server.host=smtp.gmail.com \
   -Djboss.mail.server.port=587 \
-  -Djboss.bind.address=0.0.0.0 \
-  -Djboss.bind.address.management=localhost \
   -Djboss.as.management.blocking.timeout=9999999 \
   -Djboss.modules.system.pkgs=org.jboss.byteman \
   -Dorg.jboss.resolver.warning=true \
