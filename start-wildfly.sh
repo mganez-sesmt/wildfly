@@ -11,13 +11,15 @@
 # Change to WildFly bin directory
 cd "bin" || { echo "Failed to enter bin directory"; exit 1; }
 
+# -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=999M \
+set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
+
 # Start WildFly with all configurations
 ./standalone.sh \
   -b 0.0.0.0 \
   --server-config=standalone-full.xml \
   -Djboss.server.base.dir="standalone" \
   -Dprogram.name="JBossTools: WildFly 24+" \
-  -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=999M \
   -Dorg.jboss.resolver.warning=true \
   -Djava.net.preferIPv4Stack=true \
   -Dsun.rmi.dgc.client.gcInterval=3600000 \
@@ -25,7 +27,7 @@ cd "bin" || { echo "Failed to enter bin directory"; exit 1; }
   -Djboss.modules.system.pkgs=org.jboss.byteman \
   -Djava.awt.headless=true \
   -Dorg.jboss.boot.log.file="standalone/log/boot.log" \
-  -Dlogging.configuration="file://standalone/configuration/logging.properties" \
+  -Dlogging.configuration="file://../standalone/configuration/logging.properties" \
   -Dorg.jboss.logmanager.nocolor=true \
   --add-exports=java.desktop/sun.awt=ALL-UNNAMED \
   --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED \
