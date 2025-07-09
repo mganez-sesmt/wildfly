@@ -34,7 +34,7 @@ set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
   -Dsun.rmi.dgc.client.gcInterval=3600000 \
   -Dsun.rmi.dgc.server.gcInterval=3600000 \
   -Daghu.automatic.timers.enable=true \
-  -Dlogging.configuration="file:/wildfly/standalone/configuration/logging.properties" \
+  -Dlogging.configuration="file:///wildfly/standalone/configuration/logging.properties" \
   --add-opens=java.base/java.lang=ALL-UNNAMED \
   --add-opens=java.base/java.lang.invoke=ALL-UNNAMED \
   --add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
