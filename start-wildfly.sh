@@ -8,16 +8,20 @@
 #    exit 1
 #fi
 
+# Change to WildFly bin directory
+#cd "bin" || { echo "Failed to enter bin directory"; exit 1; }
+
 # -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=999M \
 set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
 
 # Start WildFly with all configurations
-./bin/standalone.sh \
+.bin/standalone.sh \
   --server-config=standalone-full.xml \
   -Dprogram.name="JBossTools: WildFly 24+" \
   -Djava.awt.headless=true \
   -Djava.net.preferIPv4Stack=true \
-  -Djboss.server.base.dir="." \
+  -Djboss.server.base.dir="standalone" \
+  -Djboss.home.dir="." \
   -Djboss.mail.server.host=smtp.gmail.com \
   -Djboss.mail.server.port=587 \
   -Djboss.as.management.blocking.timeout=9999999 \
@@ -28,12 +32,12 @@ set JAVA_OPTS=-Xms5G -Xmx5G -XX:MetaspaceSize=99M -XX:MaxMetaspaceSize=2G
   -Dsun.rmi.dgc.client.gcInterval=3600000 \
   -Dsun.rmi.dgc.server.gcInterval=3600000 \
   -Daghu.automatic.timers.enable=true \
+  -Dlogging.configuration="standalone/configuration/logging.properties" \
   -Ddbfilter=pg \
   -Ddatasource.driver.classname=org.postgresql.Driver \
   -Ddatasource.dialect.classname=br.gov.mec.aghu.core.persistence.dialect.PostgreSQLExtendedDialect
 
 
-  #-Dlogging.configuration="standalone/configuration/logging.properties" \
   #-Dlogging.configuration="file:///wildfly/standalone/configuration/logging.properties"
   
  #  \
