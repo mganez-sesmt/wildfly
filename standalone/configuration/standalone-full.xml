@@ -630,9 +630,11 @@
                     </statement>
                 </datasource>
                 <drivers>
+                    <!-- 
                     <driver name="OracleDriver" module="com.oracle.database.jdbc">
                         <driver-class>oracle.jdbc.OracleDriver</driver-class>
                     </driver>
+                    -->
                     <driver name="PostgresqlDriver" module="org.postgresql">
                         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
@@ -766,7 +768,7 @@
                 </security-domain>
             </security-domains>
             <security-realms>
-                <custom-realm name="AghuseRealm" module="br.gov.mec.aghu.security" class-name="${\SECURITY_REALM_CLASS:br.gov.mec.aghu.casca.autenticacao.AghuseApenasNegocialSecurityRealm}">
+                <custom-realm name="AghuseRealm" module="br.gov.mec.aghu.security" class-name="\${SECURITY_REALM_CLASS:br.gov.mec.aghu.casca.autenticacao.AghuseApenasNegocialSecurityRealm}">
                     <configuration>
                         <property name="dsJndiName" value="java:/aghuDatasource"/>
                         <property name="validarAutenticacaoNegocial" value="select usuario.id, usuario.login, usuario.ATIVO , (select count(*) from casca.CSC_PERFIS_USUARIOS perfilusuario inner join casca.CSC_PERFIL perfil on perfil.id = perfilusuario.id_perfil where perfilusuario.id_usuario = usuario.id and (perfilusuario.dthr_expiracao is null or perfilusuario.dthr_expiracao &gt; now()) and perfil.SITUACAO = 'A' ) perfilcount from CASCA.CSC_USUARIO usuario where login = upper(?)"/>
