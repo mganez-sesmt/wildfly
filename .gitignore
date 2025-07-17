@@ -1,0 +1,4 @@
+/standalone/log/*
+/standalone/tmp/*
+/standalone/data/content/*
+/standalone/configuration/standalone_xml_history/*
